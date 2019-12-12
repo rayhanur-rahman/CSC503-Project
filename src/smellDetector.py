@@ -145,7 +145,7 @@ def has_shell(node):
 
 def detectSmell(input):
     dump = open('prolog-smell.csv', 'a')
-    dump2 = open('facts-python.pl', 'a')
+    dump2 = open('facts-python-1.pl', 'a')
     try:
         with open(f'/home/rr/Workspace/CSC503-Project/gist-src/{input}', "r") as source:
             tree = ast.parse(source.read())
@@ -390,6 +390,8 @@ def detectSmell(input):
                         for element in item.keywords:
                             if element.arg == 'debug':
                                 if element.value.value == True:
+                                    dump.write(
+                                        f'{input}, DEBUG True in deployment, {var.lineno}\n')
                                     dump2.write(f'statement({item.lineno}, language(python), file(path_{input[0:-3]}), funcName({item.func.attr}), funcArgs(any), funcArgNameInContext({element.arg}), funcArgValueInContext(yes), funcAction(null), varNamePattern(null), varValue(null), attrNamePattern(null), attrValue(null), dictKeyPattern(null), dictValue(null), isTryStatement(no), isExceptBlockSingleLine(null), passInExceptBlock(null), continueInExceptBlock(null), httpWritePerformedInStatement(no), hashFuncAppliedInSource(null), stringContains(null)).\n\n')
 
         if len(item.keywords) > 0:

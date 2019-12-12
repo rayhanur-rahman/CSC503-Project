@@ -265,8 +265,8 @@ def parseYaml(filename):
     return response
 
 
-YMLPATHSFILE = '/home/rr/Workspace/CSC503-Project/ymlPaths/github.txt'
-SMELL_COUNT_OUTPUT_FILE = '/home/rr/Workspace/CSC503-Project/smellsList/github2.csv'
+YMLPATHSFILE = '/home/rr/Workspace/CSC503-Project/ymlPaths/openstack.txt'
+SMELL_COUNT_OUTPUT_FILE = '/home/rr/Workspace/CSC503-Project/smellsList/openstack2.csv'
 
 
 def detectSmells():
