@@ -147,12 +147,12 @@ def detectSmell(input):
     dump = open('prolog-smell.csv', 'a')
     dump2 = open('facts-python.pl', 'a')
     try:
-        with open(f'/home/rr/Workspace/CSC503-Project/gist-src/{input}', "r") as source:
+        with open(f'./gist-src/{input}', "r") as source:
             tree = ast.parse(source.read())
     except:
         print(f'failure parsing {input}')
         subprocess.call(
-            f'rm /home/rr/Workspace/CSC503-Project/gist-src/{input}', shell=True)
+            f'rm ./gist-src/{input}', shell=True)
         return 1
 
     analyzer = Analyzer()
@@ -484,7 +484,7 @@ def detectSmell(input):
 
 
 count = 0
-for dirName, subdirList, fileList in os.walk('/home/rr/Workspace/CSC503-Project/gist-src'):
+for dirName, subdirList, fileList in os.walk('./gist-src'):
     for fileName in fileList:
         print(fileName)
         count = count + detectSmell(fileName)
