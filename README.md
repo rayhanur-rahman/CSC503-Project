@@ -9,3 +9,19 @@ Steps:
 - run both the ```src/AnsibleSmellDetector.py``` and ```src/smellDetector.py```
 - outputs will be in ```./facts-ansible.pl``` and ```./facts-python.pl```
 - append the rules in those files from ```./rules.pl```
+
+#### Instructions on Query
+
+##### Python:
+loading prolog files: swipl facts-python.pl query.pl 
+
+Sample Query
+- smellInAllFile(python, "hardcodedSecret", Count, Files).
+- smellInAFile(python, d449e502f432278f772bd672ec785d7c, "hardcodedSecret", C, L).
+- allSmellInAFile(python, d449e502f432278f772bd672ec785d7c , Count, Lines).
+
+##### Ansible: 
+loading prolog files: swipl facts-ansible.pl query.pl
+
+Sample Query
+- allSmellInAFile(ansible, home_rr_Workspace_CSC503__Project_repo__openstack_openstack__tripleo__quickstart_playbooks_quickstart_, C, L).
