@@ -11,7 +11,7 @@ Steps:
 - append the rules in those files from ```./rules.pl```
 
 
-#### Instructions on running Query
+### Instructions on running Query
 
 Supported Queries
 - ```smellInAllFile(Lang, SmellName, Count, Files)```, this provides the occurence count of smell and corresponding file names for a specific smell and for all available files.
@@ -19,7 +19,7 @@ Supported Queries
 - ```allSmellInAFile(Lang, FileName, Count, Lines)```, this provides the occurence count of all of the supported smells and corresponding line numbers for a specific file.
 
 
-##### Python:
+#### Python:
 loading prolog files: swipl facts-python.pl query.pl 
 
 Query examples:
@@ -27,7 +27,7 @@ Query examples:
 - smellInAFile(python, d449e502f432278f772bd672ec785d7c, "hardcodedSecret", Count, Lines).
 - allSmellInAFile(python, d449e502f432278f772bd672ec785d7c , Count, Lines).
 
-##### Ansible: 
+#### Ansible: 
 loading prolog files: swipl facts-ansible.pl query.pl
 
 Query examples:
@@ -35,7 +35,7 @@ Query examples:
 - allSmellInAFile(ansible, home_rr_Workspace_CSC503__Project_repo__openstack_openstack__tripleo__quickstart_playbooks_quickstart_, Count, Lines).
 
 
-#### Supported Smells
+### Supported Smells
 
 - hardcodedSecret
 - sqlInjection
