@@ -1,6 +1,7 @@
 
 
 allSmellInAFile(Lang, Path, Count, Lines) :-
+    Lang = python,
     atom_concat('path_', Path, P),
     findall(Y1, sqlInjection(Y1, Lang, P), L1),
     findall(Y2, shellInjection(Y2, Lang, P), L2),
@@ -24,7 +25,25 @@ allSmellInAFile(Lang, Path, Count, Lines) :-
     findall(Y11, ignoreExceptBlock(Y11, Lang, P), L11),
     append(R9, L11, R10),
     findall(Y12, hardcodedTmpDirectory(Y12, Lang, P), L12),
-    append(R10, L12, Lines),
+    append(R10, L12, R11),
+    findall(Y13, hardcodedBinding(Y13, Lang, P), L13),
+    append(R11, L13, Lines),
+    length(Lines, S),
+    Count is S.
+
+%% sample file for ansible: home_rr_Workspace_CSC503__Project_repo__openstack_openstack__tripleo__quickstart_playbooks_quickstart_
+allSmellInAFile(Lang, Path, Count, Lines) :-
+    Lang = ansible,
+    atom_concat('path__', Path, P),
+    findall(Y1, hardcodedSecret(Y1, Lang, P), L1),
+    findall(Y2, emptyPassword(Y2, Lang, P), L2),
+    append(L1, L2, R1),
+    findall(Y3, noIntegrityCheck(Y3, Lang, P), L3),
+    append(R1, L3, R2),
+    findall(Y4, useOfHttpWithoutTLS(Y4, Lang, P), L4),
+    append(R2, L4, R3),
+    findall(Y5, hardcodedBinding(Y5, Lang, P), L5),
+    append(R3, L5, Lines),
     length(Lines, S),
     Count is S.
 
@@ -237,3 +256,14 @@ smellInAllFile(Lang, SmellName, Count, Files) :-
     Count is S,
     findall(X, hardcodedTmpDirectory(Z, Lang, X), F),
     copy_term(F, Files).
+
+
+smellInAllFile(Lang, SmellName, Count, Files) :-
+    SmellName = "hardcodedBinding",
+    findall(Y, hardcodedBinding(Y, Lang, P), L),
+    length(L, S),
+    Count is S,
+    findall(X, hardcodedBinding(Z, Lang, X), F),
+    copy_term(F, Files).
+
+    
