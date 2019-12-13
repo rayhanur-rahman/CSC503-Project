@@ -10,12 +10,13 @@ Steps:
 - outputs will be in ```./facts-ansible.pl``` and ```./facts-python.pl```
 - append the rules in those files from ```./rules.pl```
 
-#### Instructions on Query
+
+#### Instructions on running Query
 
 Supported Queries
-- ```smellInAllFile```, this provides the occurence count of smell and corresponding file names for a specific smell and for all available files.
-- ```smellInAFile```, it computes the occurence count of security smell and corresponding line numbers for a specific smell and specific file.
-- ```allSmellInAFile```, this provides the occurence count of all of the supported smells and corresponding line numbers for a specific file.
+- ```smellInAllFile(Lang, SmellName, Count, Files)```, this provides the occurence count of smell and corresponding file names for a specific smell and for all available files.
+- ```smellInAFile(Lang, FileName, SmellName, Count, Lines)```, it computes the occurence count of security smell and corresponding line numbers for a specific smell and specific file.
+- ```allSmellInAFile(Lang, FileName, Count, Lines)```, this provides the occurence count of all of the supported smells and corresponding line numbers for a specific file.
 
 
 ##### Python:
@@ -32,3 +33,20 @@ loading prolog files: swipl facts-ansible.pl query.pl
 Query examples:
 - smellInAllFile(ansible, "hardcodedSecret", Count, Files).
 - allSmellInAFile(ansible, home_rr_Workspace_CSC503__Project_repo__openstack_openstack__tripleo__quickstart_playbooks_quickstart_, Count, Lines).
+
+
+#### Supported Smells
+
+- hardcodedSecret
+- sqlInjection
+- shellInjection
+- badFilePermission
+- debugInDeployment
+- emptyPassword
+- execUsed
+- noIntegrityCheck
+- noCertificateValidation
+- useOfHttpWithoutTLS
+- ignoreExceptBlock
+- hardcodedTmpDirectory
+- hardcodedBinding
