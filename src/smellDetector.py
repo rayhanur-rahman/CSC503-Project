@@ -145,7 +145,7 @@ def has_shell(node):
 
 def detectSmell(input):
     dump = open('prolog-smell.csv', 'a')
-    dump2 = open('facts-python-1.pl', 'a')
+    dump2 = open('facts-python.pl', 'a')
     try:
         with open(f'/home/rr/Workspace/CSC503-Project/gist-src/{input}', "r") as source:
             tree = ast.parse(source.read())
