@@ -347,7 +347,7 @@ def detectSmell(input):
                         if isinstance(item.func.value, ast.Name):
                             if item.func.value.id == 'os' or item.func.value.id == 'subprocess' or item.func.value.id == 'commands' or item.func.value.id == 'popen2':
                                 dump.write(f'{input}, shell injection, {item.lineno}\n')
-                                dump2.write(f'statement({item.lineno}, language(python), file(path_{input[0:-3]}), funcName({item.func.attr}), funcArgs(any), funcArgNameInContext(shell), funcArgValueInContext(any), funcAction(null), varNamePattern(null), varValue(null), attrNamePattern(null), attrValue(null), dictKeyPattern(null), dictValue(null), isTryStatement(no), isExceptBlockSingleLine(null), passInExceptBlock(null), continueInExceptBlock(null), httpWritePerformedInStatement(null), hashFuncAppliedInSource(null), stringContains(null)).\n\n')
+                                dump2.write(f'statement({item.lineno}, language(python), file(path_{input[0:-3]}), funcName({(item.func.attr).lower()}), funcArgs(any), funcArgNameInContext(shell), funcArgValueInContext(any), funcAction(null), varNamePattern(null), varValue(null), attrNamePattern(null), attrValue(null), dictKeyPattern(null), dictValue(null), isTryStatement(no), isExceptBlockSingleLine(null), passInExceptBlock(null), continueInExceptBlock(null), httpWritePerformedInStatement(null), hashFuncAppliedInSource(null), stringContains(null)).\n\n')
                                 
 
         if isinstance(item.func, ast.Attribute):
@@ -400,7 +400,7 @@ def detectSmell(input):
                     if element.arg != None:
                         if element.arg in hardcodedPasswords or element.arg in hardcodedSecretWords:
                             dump.write(f'{input}, hardcoded secret, {item.lineno}\n')
-                            dump2.write(f'statement({item.lineno}, language(python), file(path_{input[0:-3]}), funcName(null), funcArgs(any), funcArgNameInContext(element.arg), funcArgValueInContext(any), funcAction(null), varNamePattern(null), varValue(null), attrNamePattern(null), attrValue(null), dictKeyPattern(null), dictValue(null), isTryStatement(no), isExceptBlockSingleLine(null), passInExceptBlock(null), continueInExceptBlock(null), httpWritePerformedInStatement(no), hashFuncAppliedInSource(null), stringContains(null)).\n\n')
+                            dump2.write(f'statement({item.lineno}, language(python), file(path_{input[0:-3]}), funcName(null), funcArgs(any), funcArgNameInContext({element.arg}), funcArgValueInContext(any), funcAction(null), varNamePattern(null), varValue(null), attrNamePattern(null), attrValue(null), dictKeyPattern(null), dictValue(null), isTryStatement(no), isExceptBlockSingleLine(null), passInExceptBlock(null), continueInExceptBlock(null), httpWritePerformedInStatement(no), hashFuncAppliedInSource(null), stringContains(null)).\n\n')
 
         if isinstance(item.func, ast.Attribute):
             if item.func.attr == 'bind':
