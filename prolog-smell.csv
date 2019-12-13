@@ -4766,3 +4766,7 @@ e196107b5e0afc834652bd3153030c42.py, use of tmp directory,137
 412191.py, use of tmp directory,60
 412191.py, use of tmp directory,68
 ea9c15362abe3f63773a.py, use of tmp directory,59
+d449e502f432278f772bd672ec785d7c.py, hardcoded secret, 16
+d449e502f432278f772bd672ec785d7c.py, use of shell arguments, 49
+d449e502f432278f772bd672ec785d7c.py, sql injection, 22
+1059524.py, ignoring except block, 87
