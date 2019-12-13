@@ -12,16 +12,23 @@ Steps:
 
 #### Instructions on Query
 
+Supported Queries
+- ```smellInAllFile```, this provides the occurence count of smell and corresponding file names for a specific smell and for all available files.
+- ```smellInAFile```, it computes the occurence count of security smell and corresponding line numbers for a specific smell and specific file.
+- ```allSmellInAFile```, this provides the occurence count of all of the supported smells and corresponding line numbers for a specific file.
+
+
 ##### Python:
 loading prolog files: swipl facts-python.pl query.pl 
 
-Sample Query
+Query examples:
 - smellInAllFile(python, "hardcodedSecret", Count, Files).
-- smellInAFile(python, d449e502f432278f772bd672ec785d7c, "hardcodedSecret", C, L).
+- smellInAFile(python, d449e502f432278f772bd672ec785d7c, "hardcodedSecret", Count, Lines).
 - allSmellInAFile(python, d449e502f432278f772bd672ec785d7c , Count, Lines).
 
 ##### Ansible: 
 loading prolog files: swipl facts-ansible.pl query.pl
 
-Sample Query
-- allSmellInAFile(ansible, home_rr_Workspace_CSC503__Project_repo__openstack_openstack__tripleo__quickstart_playbooks_quickstart_, C, L).
+Query examples:
+- smellInAllFile(ansible, "hardcodedSecret", Count, Files).
+- allSmellInAFile(ansible, home_rr_Workspace_CSC503__Project_repo__openstack_openstack__tripleo__quickstart_playbooks_quickstart_, Count, Lines).
